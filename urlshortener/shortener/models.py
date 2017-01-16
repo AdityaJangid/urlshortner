@@ -8,11 +8,10 @@ class BigUrl(models.Model):
     last_modified= models.DateTimeField(auto_now=True)
     time_stamp= models.DateTimeField(auto_now_add=True)
     
-    """ def save(self,*argv,**kwargs):
+    def save(self,*argv,**kwargs):
         print("something")
         self.shortcode = code_generator()
         super(BigUrl,self).save(*argv,**kwargs)
-        """
 
     def __str__(self):
         return str(self.url)

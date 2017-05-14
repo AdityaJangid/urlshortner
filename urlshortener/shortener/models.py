@@ -5,7 +5,7 @@ from .utils import Code_generator
 
 class BigUrl(models.Model):
     url = models.CharField(max_length=220,)
-    shortcode = models.CharField(max_length=15,default="xyz",unique=True)
+    shortcode = models.CharField(max_length=15,unique=True, blank=True)
     last_modified= models.DateTimeField(auto_now=True)
     time_stamp= models.DateTimeField(auto_now_add=True)
 

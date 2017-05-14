@@ -1,11 +1,7 @@
 from django.db import models
-import random
+from .utils import Code_generator
 
 # Create your models here.
-def code_generator():
-    a = "abcdefghijklmnopqrstuvwxyz"
-    return "".join(random.sample(a*6,6))
-
 
 class BigUrl(models.Model):
     url = models.CharField(max_length=220,)
@@ -14,8 +10,8 @@ class BigUrl(models.Model):
     time_stamp= models.DateTimeField(auto_now_add=True)
 
     def save(self,*argv,**kwargs):
-        print("something")
-        self.shortcode = code_generator()
+        if self.shortcode == "" or self.shortcode is None:
+          self.shortcode = Code_generator()
         super(BigUrl,self).save(*argv,**kwargs)
 
     def __str__(self):

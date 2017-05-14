@@ -10,7 +10,7 @@ class BigUrl(models.Model):
     time_stamp= models.DateTimeField(auto_now_add=True)
 
     def save(self,*argv,**kwargs):
-        if self.shortcode == "   " or self.shortcode is None:
+        if self.shortcode == "          " or self.shortcode is None:
           self.shortcode = Code_generator()
         super(BigUrl,self).save(*argv,**kwargs)
 

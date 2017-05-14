@@ -15,4 +15,4 @@ class BigUrl(models.Model):
         super(BigUrl,self).save(*argv,**kwargs)
 
     def __str__(self):
-        return (self.url)
+        return str(self.url)

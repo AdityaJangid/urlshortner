@@ -11,7 +11,7 @@ class BigUrl(models.Model):
 
     def save(self,*argv,**kwargs):
         if self.shortcode == " " or self.shortcode is None:
-          self.shortcode = Code_generator()
+          self.shortcode = short_code(self)
         super(BigUrl,self).save(*argv,**kwargs)
 
     def __str__(self):

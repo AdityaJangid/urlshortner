@@ -3,7 +3,7 @@ from .utils import Code_generator
 
 # Create your models here.
 class BigUrlManager(models.Manager):
-    def all(self, *args, **kwargs):
+    def unactive(self, *args, **kwargs):
         query_set = super(BigUrlManager, self).all(*args, **kwargs)
         query_set = query_set.filter(Active = False)
         return query_set
@@ -14,9 +14,11 @@ class BigUrl(models.Model):
     last_modified= models.DateTimeField(auto_now=True)
     time_stamp= models.DateTimeField(auto_now_add=True)
     Active = models.BooleanField(default = True)
+    objects = BigUrlManager()
+    
 
     def save(self,*argv,**kwargs):
-        if self.shortcode == " " or self.shortcode is None:
+        if self.shortcode == "" or self.shortcode is None:
           self.shortcode = short_code(self)
         super(BigUrl,self).save(*argv,**kwargs)
 

@@ -22,9 +22,12 @@ class BigUrlManager(models.Manager):
 
     #change all the shortcodes all at  once
 
-    def refresh_shortcodes(self):
+    def refresh_shortcodes(self, items = None):
+        print(items)
         new_codes = 0
         qs = BigUrl.objects.filter(id__gte=1) 
+        if items is not None and isinstance(items, int):
+            qs = qs.order_by('-id')[:items]
         for q in qs:
             q.shortcode = create_shortcode(q)
             print(q)

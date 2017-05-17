@@ -1,8 +1,13 @@
+from django.conf import settings
 from django.db import models
 from .utils import Code_generator
 from .utils import create_shortcode
 
 # Create your models here.
+
+
+SHORTCODE_MAX = getattr( settings,"SHORTCODE_MAX" ,15)
+
 class BigUrlManager(models.Manager):
     # gives all the unactive urls
 
@@ -39,7 +44,7 @@ class BigUrlManager(models.Manager):
 
 class BigUrl(models.Model):
     url = models.CharField(max_length=220,)
-    shortcode = models.CharField(max_length=15,unique=True, blank=True)
+    shortcode = models.CharField(max_length=SHORTCODE_MAX ,unique=True, blank=True)
     last_modified= models.DateTimeField(auto_now=True)
     time_stamp= models.DateTimeField(auto_now_add=True)
     Active = models.BooleanField(default = True)

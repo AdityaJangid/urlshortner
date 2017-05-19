@@ -7,20 +7,24 @@ from .models import BigUrl
 
 
 
-def Redirect_FB_View(request,shortcode = None, *args,**kwargs):
+def Redirect_FB_View(request,shortcode=None, *args,**kwargs):
     #  try:
     #      obj = BigUrl.objects.get(shortcode = shortcode)
     #  except:
     #      obj  = BigUrl.objects.all().first()
+    #  return HttpResponse("hello {sc}".format(sc=obj))
 
 
-
-    obj_url = None
-    qs = BigUrl.objects.filter(shortcode__iexact = shortcode.upper())
-    if qs.exists() and qs.count() ==1:
-        obj = qs.first()
-        obj_url = obj.url
-    return  HttpResponse("hello {sc}".format(sc=obj__url))
+    obj = get_object_or_404(BigUrl, shortcode=shortcode)
+    #  obj_url = obj.url
+    #
+    #
+    #  obj_url = None
+    #  qs = BigUrl.objects.filter(shortcode__iexact = shortcode.upper())
+    #  if qs.exists() and qs.count() ==1:
+    #      obj = qs.first()
+    #      obj_url = obj.url
+    return  HttpResponse("hello {sc}".format(sc=obj.url))
 
 
 

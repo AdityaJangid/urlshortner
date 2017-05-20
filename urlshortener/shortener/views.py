@@ -11,10 +11,8 @@ def test_view(request):
 
 def Redirect_FB_View(request,shortcode=None, *args,**kwargs):
     obj = get_object_or_404(BigUrl, shortcode=shortcode)
-    #  return  HttpResponse("hello {sc}".format(sc=obj.url))
     return HttpResponseRedirect(obj.url)
-
-
+    #  return  HttpResponse("hello {sc}".format(sc=obj.url))
 
     #  try:
     #      obj = BigUrl.objects.get(shortcode = shortcode)
@@ -31,7 +29,9 @@ def Redirect_FB_View(request,shortcode=None, *args,**kwargs):
     #  if qs.exists() and qs.count() ==1:
     #      obj = qs.first()
     #      obj_url = obj.url
-
+    #
+    #  #  obj = BigUrl.objects.get(shortcode=shortcode)
+    #  return HttpResponse("hello {sc}".format(sc=obj_url))
 
 
 class Redirect_CB_View(View):

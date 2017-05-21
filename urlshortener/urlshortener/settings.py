@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'cqw3ox3%7olpmw(cb12gyws6(mb)r#i$3uw85o=bdrsk6+o*tk'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['www.canis.com','canis.com'] #  enter 127.0.0.1    www.canis.com and   127.0.0.1   canis.com in /etc/hosts to use the domain name sevice
 
@@ -37,10 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    #third party apps
+    'django_hosts',
+
+    #custom apps
     'shortener',
 ]
 
 MIDDLEWARE = [
+    'django_hosts.middleware.HostsRequestMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -48,9 +54,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django_hosts.middleware.HostsResponseMiddleware',
 ]
 
 ROOT_URLCONF = 'urlshortener.urls'
+ROOT_HOSTCONF = 'urlshortener.hosts'
+DEFAULT_HOST=  'www'
+DEFAULT_REDIRECT_URL = "http://www.canis.com:8000"
 
 TEMPLATES = [
     {

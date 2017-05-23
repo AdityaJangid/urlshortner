@@ -65,7 +65,8 @@ DEFAULT_REDIRECT_URL = "http://www.canis.com:8000"
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, "templates")],
+        #  'DIRS': [os.path.join(BASE_DIR, "templates")],
+        'DIRS' : [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

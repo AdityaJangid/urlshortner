@@ -10,13 +10,26 @@ def test_view(request):
     return HttpResponse("testing pass if you are viewing this page")
 
 
+def fb_home_view(self,request, *args,**kwargs):
+    if request.method==post:
+        print(request.POST)
+    return render(request, 'shortener/home.html',{})
+
+
 
 
 
 
 class HomeView(View):
     def get(self, request,  *args,**kwargs):
-        return render(request, "shortener/home.html",{})
+        return render(request, 'shortener/home.html',{})
+
+    def post(self, request, *args , **kwargs):
+        #  some_dict = {} some_dict.get('url', "http://www.canis.com")
+        #  print(request.POST)
+        print(request.POST["url"])
+        print(request.POST.get("url"))
+        return render(request, 'shortener/home.html',{})
 
 
 #  def Redirect_FB_View(request,shortcode=None, *args,**kwargs):

@@ -4,6 +4,7 @@ from django.http import HttpResponse , HttpResponseRedirect
 # Create your views here.
 from django.views import View
 from .models import BigUrl
+from .forms import SubmitUrlForm
 
 
 def test_view(request):
@@ -22,14 +23,22 @@ def fb_home_view(self,request, *args,**kwargs):
 
 class HomeView(View):
     def get(self, request,  *args,**kwargs):
-        return render(request, 'shortener/home.html',{})
+        the_form = SubmitUrlForm()
+        context = {
+                "title": "enter your url",
+                "form": the_form
+                }
+        return render(request, 'shortener/home.html',context)
 
     def post(self, request, *args , **kwargs):
-        #  some_dict = {} some_dict.get('url', "http://www.canis.com")
-        #  print(request.POST)
-        print(request.POST["url"])
-        print(request.POST.get("url"))
-        return render(request, 'shortener/home.html',{})
+        form = SubmitUrlForm(request.POST)
+        context ={
+                "title": "your entered url",
+                "form": form
+                }
+        if form.is_valid():
+            print(form.cleaned_data)
+        return render(request, 'shortener/home.html',context)
 
 
 #  def Redirect_FB_View(request,shortcode=None, *args,**kwargs):

@@ -1,8 +1,11 @@
 <div style='width: 800px; margin: 0 auto;'>
+	<h1>{{title}}</h1>
 	
-	<h1>enter your big url here</h1>
+	<!-- <h1>enter your big url here</h1> -->
 	<form  method='POST' action="."> {% csrf_token %}
-		<input name='url' type='text' placeholder='shorten your bigurl'/>
+		
+		{{form.as_p}}
+		<!-- <input name='url' type='text' placeholder='shorten your bigurl'/> -->
 		<input type='submit' value='shorten'>
 	</form>
 </div>

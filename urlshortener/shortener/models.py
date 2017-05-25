@@ -3,6 +3,7 @@ from django.db import models
 from .utils import Code_generator
 from .utils import create_shortcode
 
+from .validators import validate_url, validate_dot_com
 # Create your models here.
 
 
@@ -43,7 +44,7 @@ class BigUrlManager(models.Manager):
         return "New codes made: {i}".format(i=new_codes)
 
 class BigUrl(models.Model):
-    url = models.CharField(max_length=220,)
+    url = models.CharField(max_length=220, validators=[validate_url, validate_dot_com])
     shortcode = models.CharField(max_length=SHORTCODE_MAX ,unique=True, blank=True)
     last_modified= models.DateTimeField(auto_now=True)
     time_stamp= models.DateTimeField(auto_now_add=True)

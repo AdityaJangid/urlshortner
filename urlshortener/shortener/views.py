@@ -33,12 +33,26 @@ class HomeView(View):
     def post(self, request, *args , **kwargs):
         form = SubmitUrlForm(request.POST)
         context ={
-                "title": "your entered url",
-                "form": form
-                }
+            "title": "your entered url",
+            "form": form
+            }
+        template = "shortener/home.html"
         if form.is_valid():
-            print(form.cleaned_data)
-        return render(request, 'shortener/home.html',context)
+            print(form.cleaned_data.get("url"))
+            new_url=form.cleaned_data.get("url")
+            obj, created = BigUrl.objects.get_or_create(url=new_url)
+            context = {
+                    "object" : obj,
+                    "created": created,
+                    }
+            if created:
+                #  return render(request, 'shortener/success.html',new_context)
+                template = "shortener/success.html"
+            else:
+                #  return render(request, 'shortener/already_exist.html',new_context)
+                template = "shortener/already_exist.html"
+                
+        return render(request,template ,context)
 
 
 #  def Redirect_FB_View(request,shortcode=None, *args,**kwargs):

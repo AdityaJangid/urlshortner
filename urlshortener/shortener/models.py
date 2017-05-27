@@ -2,6 +2,8 @@ from django.conf import settings
 from django.db import models
 from .utils import Code_generator
 from .utils import create_shortcode
+#  from django.core.urlresolvers import reverse
+from django_hosts.resolvers import reverse
 
 from .validators import validate_url, validate_dot_com
 # Create your models here.
@@ -59,3 +61,11 @@ class BigUrl(models.Model):
 
     def __str__(self):
         return str(self.url)
+
+
+
+    def get_short_url(self):
+        print(self.shortcode)
+        url_path =    reverse("scode" ,kwargs={"shortcode": self.shortcode }, host='www', scheme='http')#, port='8000')
+        #  return "http://www.canis.com"+ url_path
+        return url_path

@@ -61,6 +61,7 @@ ROOT_URLCONF = 'urlshortener.urls'
 ROOT_HOSTCONF = 'urlshortener.hosts'
 DEFAULT_HOST=  'www'
 DEFAULT_REDIRECT_URL = "http://www.canis.com:8000"
+PARENT_HOST = "canis.com:8000"
 
 TEMPLATES = [
     {

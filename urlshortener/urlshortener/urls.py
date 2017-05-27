@@ -21,7 +21,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^about123$', test_view),
     url(r'^$',HomeView.as_view()),
-    url(r'^(?P<shortcode>[\w-]+)/$', Redirect_CB_View.as_view()),
+    url(r'^(?P<shortcode>[\w-]+)/$', Redirect_CB_View.as_view(), name='scode'),
     #  url(r'^(?P<shortcode>[\w-]+){6,15}/$', Redirect_FB_View),
     #  url(r'^(?P<shortcode>[\w-]+)/$', Redirect_FB_View),
 ]

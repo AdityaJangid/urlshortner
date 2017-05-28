@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     #custom apps
     'shortener',
+    'analytics',
 ]
 
 MIDDLEWARE = [

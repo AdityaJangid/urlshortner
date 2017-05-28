@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 
-from django.http import HttpResponse , HttpResponseRedirect
+from django.http import HttpResponse , HttpResponseRedirect, Http404
 # Create your views here.
 from django.views import View
 from .models import BigUrl
 from .forms import SubmitUrlForm
+from analytics.models import ClickEvent
 
 
 def test_view(request):
@@ -55,35 +56,40 @@ class HomeView(View):
         return render(request,template ,context)
 
 
-#  def Redirect_FB_View(request,shortcode=None, *args,**kwargs):
-#      obj = get_object_or_404(BigUrl, shortcode=shortcode)
-#      return HttpResponseRedirect(obj.url)
-#      #  return  HttpResponse("hello {sc}".format(sc=obj.url))
+#  def redirect_fb_view(request,shortcode=none, *args,**kwargs):
+#      obj = get_object_or_404(bigurl, shortcode=shortcode)
+#      return httpresponseredirect(obj.url)
+#      #  return  httpresponse("hello {sc}".format(sc=obj.url))
 #
 #      try:
-#          obj = BigUrl.objects.get(shortcode = shortcode)
+#          obj = bigurl.objects.get(shortcode = shortcode)
 #      except:
-#          obj  = BigUrl.objects.all().first()
-#      return HttpResponse("hello {sc}".format(sc=obj))
+#          obj  = bigurl.objects.all().first()
+#      return httpresponse("hello {sc}".format(sc=obj))
 #
 #
 #      obj_url = obj.url
 #
 #
-#      obj_url = None
-#      qs = BigUrl.objects.filter(shortcode__iexact = shortcode.upper())
+#      obj_url = none
+#      qs = bigurl.objects.filter(shortcode__iexact = shortcode.upper())
 #      if qs.exists() and qs.count() ==1:
 #          obj = qs.first()
 #          obj_url = obj.url
 #
-#      #  obj = BigUrl.objects.get(shortcode=shortcode)
-#      return HttpResponse("hello {sc}".format(sc=obj_url))
+#      #  obj = bigurl.objects.get(shortcode=shortcode)
+#      return httpresponse("hello {sc}".format(sc=obj_url))
 #
 #
-class Redirect_CB_View(View):
+class URLRedirectView(View):
     def get(self, request,shortcode=None,  *args,**kwargs):
-        obj = get_object_or_404(BigUrl, shortcode=shortcode)
-        #  return  HttpResponse("hello again {sc}".format(sc=obj.url))
+        #  print(shortcode)
+        qs = BigUrl.objects.filter(shortcode__iexact=shortcode)
+        if qs.count()!=1 and  not  qs.exists():
+            raise Http404
+        #  print(qs)
+        #  obj = get_object_or_404(bigurl, shortcode__iexact=shortcode)
+        #  #  return  httpresponse("hello again {sc}".format(sc=obj.url))
+        obj = qs.first()
+        print(ClickEvent.objects.create_event(obj))
         return HttpResponseRedirect(obj.url)
-
-

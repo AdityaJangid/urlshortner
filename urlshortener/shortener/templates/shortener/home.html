@@ -1,11 +1,17 @@
-<div style='width: 800px; margin: 0 auto;'>
-	<h1>{{title}}</h1>
 	
-	<!-- <h1>enter your big url here</h1> -->
-	<form  method='POST' action="."> {% csrf_token %}
-		
-		{{form.as_p}}
-		<!-- <input name='url' type='text' placeholder='shorten your bigurl'/> -->
-		<input type='submit' value='shorten'>
-	</form>
-</div>
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<h1 class="cover-heading">{{title}}</h1>
+	<p class="lead">
+	      <div class="col-sm-6 col-sm-offset-3" >
+			<form  method='POST' action="."> {% csrf_token %}
+				{{form.as_p}}
+				<!-- <input name='url' type='text' placeholder='shorten your bigurl'/> -->
+				<input class='btn btn-primary'type='submit' value='shorten'>
+			</form>
+		</div>
+	</p>
+{% endblock content %}

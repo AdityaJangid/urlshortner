@@ -1,9 +1,23 @@
-<div style='align-text: center; width: 800px; margin: 0 auto;'>
-	<h1>Created!</h1>
+
+
+{% extends "base.html" %}
+
+
+{% block title %}
+{{  object.shortcode  }} | {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+<div >
+	<h1>Created Successfully!</h1>
 	<p>{{  object.url  }}</p>
 	{% if object.clickevent %}<p>count: {{object.clickevent.count}} {% endif %}</p>
 
-	<p><a href ='{{  object.get_short_url  }}'> {{  object.get_short_url  }}</a></p>
-	<a href="/" > + New</a>
+	<p><a href class='btn btn-primary btn-link' ='{{  object.get_short_url  }}'> {{  object.get_short_url  }}</a></p>
+	<a class='btn btn-default' href="/" > + New</a>
 	
 </div>
+
+{% endblock content %}
+
+

@@ -26,7 +26,7 @@ class HomeView(View):
     def get(self, request,  *args,**kwargs):
         the_form = SubmitUrlForm()
         context = {
-                "title": "enter your url",
+                "title": "Canis",
                 "form": the_form
                 }
         return render(request, 'shortener/home.html',context)
@@ -34,7 +34,7 @@ class HomeView(View):
     def post(self, request, *args , **kwargs):
         form = SubmitUrlForm(request.POST)
         context ={
-            "title": "your entered url",
+            "title": "Canis",
             "form": form
             }
         template = "shortener/home.html"

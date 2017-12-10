@@ -25,8 +25,8 @@ SECRET_KEY = 'cqw3ox3%7olpmw(cb12gyws6(mb)r#i$3uw85o=bdrsk6+o*tk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [] #['www.canis.com','canis.com'] #  enter 127.0.0.1    www.canis.com and   127.0.0.1   canis.com in /etc/hosts to use the domain name sevice
 
+ALLOWED_HOSTS =  ['www.canis.com','canis.com','127.0.0.1'] #enter 127.0.0.1    www.canis.com and   127.0.0.1   canis.com in /etc/hosts to use the domain name sevice
 
 # Application definition
 

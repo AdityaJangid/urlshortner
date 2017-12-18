@@ -11,13 +11,11 @@ URL shortener is a **django(1.10)** based project which will short the given URL
 Dependencies
 -------------
 
-> - Django 1.10.2 - to install use the following command.
+>  Django 1.10.2 - to install use the following command.
+- pip3 install Django==1.10.2
 
-	- pip3 install Django==1.10.2
-
->- django_hosts - to install django_hosts use the following command.
-
-	- pip3 install django_hosts
+> django_hosts - to install django_hosts use the following command.
+- pip3 install django_hosts
 
 Running  the URL Shortener
 -------------

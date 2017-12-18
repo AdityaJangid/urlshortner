@@ -12,9 +12,12 @@ Dependencies
 -------------
 
 > - Django 1.10.2 - to install use the following command.
-			- pip3 install Django==1.10.2
+
+	- pip3 install Django==1.10.2
+
 >- django_hosts - to install django_hosts use the following command.
-			- pip3 install django_hosts
+
+	- pip3 install django_hosts
 
 Running  the URL Shortener
 -------------
@@ -27,7 +30,7 @@ Running  the URL Shortener
 
 Now add the following at end of the file.
 
->- 127.0.0.1	www.canis.com
+>- 127.0.0.1		www.canis.com
 
 ### Now hit the following URL in browser
 >  **www.canis.com:8000**
@@ -38,6 +41,6 @@ now you can add new urls and make it short. To change all the shortcode at once 
 >- python3 manage.py refreshcodes
 
  or you can enter the number of shortcodes to refresh.
- >- python3 manage.py refreshcodes  ------items 10
+ >- python3 manage.py refreshcodes  --items 10
 
 
